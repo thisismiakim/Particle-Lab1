@@ -1,0 +1,50 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/s5314663/CGA/Labs/Particle/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja-build cmTC_23128 && [1/2] Building C object CMakeFiles/cmTC_23128.dir/src.c.o
+[2/2] Linking C executable cmTC_23128
+FAILED: cmTC_23128 
+: && /opt/rh/gcc-toolset-11/root/usr/bin/gcc   CMakeFiles/cmTC_23128.dir/src.c.o -o cmTC_23128   && :
+/opt/rh/gcc-toolset-11/root/usr/bin/ld: CMakeFiles/cmTC_23128.dir/src.c.o: in function `main':
+src.c:(.text+0x2d): undefined reference to `pthread_create'
+/opt/rh/gcc-toolset-11/root/usr/bin/ld: src.c:(.text+0x39): undefined reference to `pthread_detach'
+/opt/rh/gcc-toolset-11/root/usr/bin/ld: src.c:(.text+0x45): undefined reference to `pthread_cancel'
+/opt/rh/gcc-toolset-11/root/usr/bin/ld: src.c:(.text+0x56): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/s5314663/CGA/Labs/Particle/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja-build cmTC_34bef && [1/2] Building C object CMakeFiles/cmTC_34bef.dir/CheckFunctionExists.c.o
+[2/2] Linking C executable cmTC_34bef
+FAILED: cmTC_34bef 
+: && /opt/rh/gcc-toolset-11/root/usr/bin/gcc -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_34bef.dir/CheckFunctionExists.c.o -o cmTC_34bef  -lpthreads && :
+/opt/rh/gcc-toolset-11/root/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+
