@@ -1310,6 +1310,18 @@
 			"value" : "x64-linux"
 		},
 		{
+			"name" : "VCPKG_TRACE_FIND_PACKAGE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Trace calls to find_package()"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
 			"name" : "VCPKG_VERBOSE",
 			"properties" : 
 			[
